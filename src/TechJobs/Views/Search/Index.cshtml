@@ -27,6 +27,10 @@
 
 <hr />
 
+@if (ViewBag.error != null)
+{
+    <h3 style="color:red">@ViewBag.error</h3>
+}
 @if (ViewBag.jobs != null)
 {
 

@@ -19,16 +19,25 @@ namespace TechJobs.Controllers
         {
             ViewBag.columns = ListController.columnChoices;
             ViewBag.title = "Search";
-            if (searchType == "all")
+            if (searchTerm == null)
             {
-                ViewBag.jobs = JobData.FindByValue(searchTerm);
+                ViewBag.error = "Search keyword can not be left blank.";
+                return View("Index");
             }
             else
             {
-                ViewBag.jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+                if (searchType == "all")
+                {
+                    ViewBag.jobs = JobData.FindByValue(searchTerm);
+                }
+                else
+                {
+                    ViewBag.jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+                }
+            
+                return View ("Index");
             }
             
-            return View ("Index");
         }
 
     }
